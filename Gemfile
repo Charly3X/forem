@@ -7,6 +7,7 @@ gemspec
 gem 'pry-rails'
 gem 'pry-nav'
 gem 'select2-rails', '~> 4.0.1.1'
+gem 'subdomain_locale'
 
 platforms :jruby do
   gem "activerecord-jdbc-adapter", :require => false
