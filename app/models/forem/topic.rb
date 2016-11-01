@@ -10,7 +10,7 @@ module Forem
     attr_accessor :moderation_option
 
     extend FriendlyId
-    #friendly_id :subject, :use => [:slugged, :finders]
+    friendly_id :subject, :use => [:slugged, :finders]
 
     belongs_to :forum
     belongs_to :forem_user, :class_name => Forem.user_class.to_s, :foreign_key => :user_id
@@ -23,18 +23,16 @@ module Forem
 
     before_save  :set_first_post_user
     after_create :subscribe_poster
-    after_create :skip_pending_review, :unless => :moderated?
-    friendly_id :subject, use: :slugged
+    after_create :skip_pending_review, :unless => :moderated?   	  	  
 
-     def slug_candidates
+    class << self
+      def slug_candidates
         [
            :subject,
            [:subject, :id]
        ]
-     end	  
-	  
-
-    class << self
+      end	    
+	    
       def visible
         where(:hidden => false)
       end
