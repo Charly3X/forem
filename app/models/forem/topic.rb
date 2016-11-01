@@ -24,6 +24,15 @@ module Forem
     before_save  :set_first_post_user
     after_create :subscribe_poster
     after_create :skip_pending_review, :unless => :moderated?
+    friendly_id :slug_candidates, use: :slugged
+
+     def slug_candidates
+        [
+           :subject,
+           [:subject, :id]
+       ]
+     end	  
+	  
 
     class << self
       def visible
