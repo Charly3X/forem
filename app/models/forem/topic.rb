@@ -25,13 +25,14 @@ module Forem
     after_create :subscribe_poster
     after_create :skip_pending_review, :unless => :moderated?   	  	  
 
-    class << self
-      def slug_candidates
+    def slug_candidates
         [
            :subject,
            [:subject, :id]
        ]
-      end	    
+    end	    
+	  
+    class << self     
 	    
       def visible
         where(:hidden => false)
