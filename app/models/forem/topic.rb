@@ -10,7 +10,8 @@ module Forem
     attr_accessor :moderation_option
 
     extend FriendlyId
-    friendly_id :subject, :use => [:slugged, :finders]
+    #friendly_id :subject, :use => [:slugged, :finders]
+    friendly_id :slug_candidates, use: [:slugged, :finders]
 
     belongs_to :forum
     belongs_to :forem_user, :class_name => Forem.user_class.to_s, :foreign_key => :user_id
