@@ -29,7 +29,7 @@ module Forem
     def slug_candidates
         [
            :subject,
-           [:subject, :id]
+           [:subject, Forem::Topic.maximum(:id).to_i + 1]
        ]
     end	    
 	  
